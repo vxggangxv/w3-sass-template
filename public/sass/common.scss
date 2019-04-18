@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+@import "./parts/common";
+
+.header {
+    .gnb {
+        background: gray;
+        color: #fff;
+    }
+}
+
+.footer {
+    background: blue;
+    color: #fff;
+    .inner {
+        
+    }
+}

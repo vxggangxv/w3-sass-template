@@ -1,0 +1,294 @@
+@charset "utf-8";
+
+// 전달인자 설징이 없는 믹스인
+@mixin reset-box {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+@mixin reset-table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// 전달인자가 설정된 믹스인
+@mixin position($type:relative, $top:null, $left:null, $bottom:null, $right:null) {
+	position: $type;
+	top: $top;
+	left: $left;
+	bottom: $bottom;
+	right: $right;
+}
+
+@mixin size($w:null, $h:null) {
+	width: $w;
+	height: $h;
+}
+
+@mixin sizes($s:null, $bg: null) {
+	width: $s;
+	height: $s;
+	background: $bg
+}
+
+@mixin transition($args...) {
+	-webkit-transition: $args;
+	transition: $args;
+}
+
+@mixin mg-auto($t: null, $b: null, $type: relative) {
+	position: $type;
+	margin: $t auto $b;
+}
+
+// 마이크로 클리어픽스(Micro Clearfix)
+@mixin clearfix {
+
+	&::before,
+	&::after {
+		content: '';
+		display: table;
+	}
+
+	&::after {
+		clear: both;
+	}
+
+	.ie8 & {
+		zoom: 1;
+	}
+}
+
+// 커스텀 믹스인
+// 노출 리셋
+@mixin show-reset {
+	width: auto;
+	height: auto;
+	text-indent: 0;
+	font-size: 100%;
+	line-height: normal;
+	visibility: visible;
+}
+
+// 중앙 정렬
+@mixin centerThis($width: 1200px) {
+	width: $width;
+	margin: 0 auto;
+}
+
+@mixin float($l: left) {
+	position: relative;
+	float: $l;
+}
+
+@mixin bx($type: border-box) {
+	position: relative;
+	box-sizing: $type;
+}
+
+@mixin dp($type: inline-block) {
+	position: relative;
+	display: $type;
+}
+
+@mixin va($type: middle, $type-dp: inline-block) {
+	position: relative;
+	vertical-align: $type;
+	display: $type-dp;
+}
+
+@mixin to($type: ellipsis) {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: $type;
+}
+
+@mixin bdr($color: transparent, $with: 1px, $type: solid) {
+	border: 1px solid $color;
+}
+
+@mixin bdr-r($tl: 4px, $tr: 4px, $bl: 4px, $br: 4px) {
+	border-radius: $tl $tr $bl $br;
+}
+
+@mixin bdr-rs($n: 4px) {
+	border-radius: $n;
+}
+
+@mixin lbl($fz: 12px, $mg: 3px) {
+	position: relative;
+	font-size: $fz;
+
+	&>input {
+		margin-right: $mg;
+	}
+}
+
+@mixin appear($type: none, $bd-c: #ddd) {
+	appearance: $type;
+	-webkit-appearance: $type;
+	-moz-appearance: $type;
+	border: 1px solid $bd-c;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+@mixin ft($s: 13px, $c: #333, $w: null, $fm: null) {
+	font-size: $s;
+	color: $c;
+	font-weight: $w;
+	font-family: $fm;
+}
+
+@mixin zidx($z: 1, $type: relative) {
+	position: $type;
+	z-index: $z;
+}
+
+@mixin linear-gradient($top, $bottom) {
+	background: $top;
+	/* Old browsers */
+	background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $top), color-stop(100%, $bottom));
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, $top 0%, $bottom 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, $top 0%, $bottom 100%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, $top 0%, $bottom 100%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, $top 0%, $bottom 100%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000', GradientType=0);
+	/* IE6-9 */
+}
+
+
+// 컴포넌트 관련
+@mixin gray-gradient {
+	background: $bg-tblBase-th;
+	border-bottom: 1px solid $bor-gray-table;
+	background-image: none, -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .6)), to(rgba(255, 255, 255, 0)));
+	background-image: none, -webkit-linear-gradient(top, rgba(255, 255, 255, .6) 0, rgba(255, 255, 255, 0) 100%);
+	background-image: none, linear-gradient(to bottom, rgba(255, 255, 255, .6) 0, rgba(255, 255, 255, 0) 100%);
+	background-position: 50% 50%;
+	background-color: #eae8e8;
+}
+
+@mixin i-sprite-1 ($args...) {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	// width: $wh;
+	// height: $ht;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	background: $args;
+	font-size: 0;
+	line-height: 0;
+	text-align: center;
+}
+
+// 폼 베이스
+@mixin form-base($wth: null, $he: 25px, $pd: 1px 2px 2px) {
+	position: relative;
+	width: $wth;
+	height: $he;
+	// padding: 1px 2px 2px;
+	padding: $pd;
+	font-size: 12px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	display: inline-block;
+	vertical-align: middle;
+	border: 1px solid #b6b6b6;
+	background: #fff;
+	//    box-shadow: inset 0px 1px 2px #ddd;
+	box-shadow: inset 0px 1px 2px rgba(0, 0, 0, .1);
+	border-radius: 4px;
+	line-height: 1.6;
+
+	&[disabled],
+	&[readonly] {
+		// background: #eee;
+		background: #f9f8f8;
+		color: #676767;
+	}
+}
+
+@mixin slt-base($wth: null, $he: 25px, $pd: 1px 2px 2px) {
+	position: relative;
+	width: $wth;
+	height: $he;
+	padding: $pd;
+	// padding: 1px 2px 2px;
+	font-size: 12px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	display: inline-block;
+	vertical-align: middle;
+	border: 1px solid #b6b6b6;
+	background: #fff;
+	//	box-shadow: 0px 1px 1px #e9eced;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, .1);
+	border-radius: 4px;
+	min-width: 50px;
+
+	&[disabled],
+	&[readonly] {
+		// background: #fff;
+		// background: #f9f8f8;
+		background: #d6d6d6;
+		color: gray;
+	}
+
+	&.white {
+		background: #fff;
+	}
+
+	&.gray {
+		background-color: #f2f0f0;
+		background-image: none, -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .8)), to(rgba(255, 255, 255, 0)));
+		background-image: none, -webkit-linear-gradient(top, rgba(255, 255, 255, .8) 0, rgba(255, 255, 255, 0) 100%);
+		background-image: none, linear-gradient(to bottom, rgba(255, 255, 255, .8) 0, rgba(255, 255, 255, 0) 100%);
+		background-position: 50% 50%;
+	}
+}
+
+$btn-lh: 1.5;
+
+@mixin btn-base($wth: null, $he: null, $bg: fff, $bdc: #cdcdcd, $c: #333, $tsh-c: transparent) {
+	position: relative;
+	display: inline-block;
+	width: $wth;
+	height: $he;
+	border: 1px solid $bdc;
+	background-color: $bg;
+	border-color: $bdc;
+	color: $c;
+	box-shadow: 0px 1px rgba(217, 217, 217, 0.75);
+	text-shadow: 0px -1px $tsh-c;
+	padding: 1px 5px 0px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	vertical-align: middle;
+	font-size: 13px;
+	line-height: 1.6;
+	letter-spacing: -0.5px;
+	cursor: pointer;
+	border-radius: 3px;
+
+	&[disabled],
+	&[disabled]:hover {
+		background: #ccc;
+		border-color: #ccc;
+		//		background: #d6d6d6;
+		//		border-color: #d6d6d6;
+		color: #fff;
+		text-shadow: 0px -1px #aeaeae;
+		box-shadow: none;
+	}
+}
