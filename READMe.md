@@ -1,10 +1,15 @@
 # VSCODE Template
 
+## Skill
+
 - include-html (w3_inc.js)
 - scss (live-sass)
 
-<br/>
-ruby 설치 후 
+---
+
+### Guide
+
+#### ruby 설치 후
 
 ```bash
 $ gen install sass
